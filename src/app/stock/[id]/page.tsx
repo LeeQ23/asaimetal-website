@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation';
 import Head from 'next/head';
 import Link from 'next/link';
-import { machines } from '@/data/machines';
-
-const generateWhatsAppMessage = (machine: any) => {
+import { machines, Machine } from '@/data/machines';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+const generateWhatsAppMessage = (machine: Machine) => {
   let message = `Saya tertarik dengan mesin ${machine.brand || ''} ${machine.type || ''}`;
 
   const details = [];
@@ -15,7 +16,7 @@ const generateWhatsAppMessage = (machine: any) => {
   if (machine.country) details.push(`Made in: ${machine.country}`);
   if (machine.tableSize) details.push(`Ukuran Meja: ${machine.tableSize}`);
 
-  const specsEntries = Object.entries(machine.specs).filter(([key, value]) => value);
+  const specsEntries = Object.entries(machine.specs).filter(([_, value]) => value);
   if (specsEntries.length > 0) {
     const specsText = specsEntries.map(([key, value]) => `${key}: ${value}`).join(', ');
     details.push(`Spesifikasi Lainnya: ${specsText}`);
@@ -46,34 +47,11 @@ export default async function MachineDetail({ params }: PageProps) {
         <title>{machine.brand} {machine.type} - PT. Asai Metal</title>
         <meta name="description" content={`Detail mesin ${machine.brand} ${machine.type} tahun ${machine.year} dari ${machine.country}. Request quote sekarang!`} />
       </Head>
-      <header className="bg-white shadow-md fixed w-full top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center">
-            <img
-              src="/logo-asai.jpg"
-              alt="PT. ASAI METAL Logo"
-              className="h-12 w-auto mr-2"
-            />
-            <span className="text-red-600 font-bold text-xl">PT. ASAI METAL</span>
-          </Link>
-          <nav className="flex space-x-4">
-            <Link href="/" className="text-gray-700 hover:text-red-600">Home</Link>
-            <Link href="/stock" className="text-gray-700 hover:text-red-600">Stock</Link>
-            <Link href="/custom" className="text-gray-700 hover:text-red-600">Custom</Link>
-            <Link href="#contact" className="text-gray-700 hover:text-red-600">Contact</Link>
-          </nav>
-          <a
-            href={`https://wa.me/628170968855?text=${generateWhatsAppMessage(machine)}`}
-            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-          >
-            Hubungi Kami
-          </a>
-        </div>
-      </header>
+      <Header />
 
-      <section className="pt-20 py-20 bg-gray-50">
+      <section className="pt-20 py-20 bg-gray-50 text-gray-900">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="animate-fade-in-left">
               <div className="relative">
                 <img
@@ -85,7 +63,7 @@ export default async function MachineDetail({ params }: PageProps) {
               {machine.images && machine.images.length > 0 && (
                 <div className="mt-6">
                   <h4 className="text-lg font-semibold mb-4 text-gray-800">Gallery</h4>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-4">
                     {machine.images.map((img, index) => (
                       <div key={index} className="relative group overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
                         <img
@@ -121,7 +99,7 @@ export default async function MachineDetail({ params }: PageProps) {
               <h2 className="text-4xl font-bold text-red-600 mb-4 animate-slide-in-scale">
                 {machine.brand || 'Unknown'} {machine.type} {machine.capacity ? `(${machine.capacity})` : ''}
               </h2>
-              <table className="w-full mb-6 border-collapse border border-gray-300">
+              <table className="w-full mb-6 border-collapse border border-gray-300 text-gray-900">
                 <tbody>
                   <tr className="bg-gray-100">
                     <td className="border border-gray-300 p-2 font-semibold">Brand</td>
@@ -158,8 +136,8 @@ export default async function MachineDetail({ params }: PageProps) {
                 </tbody>
               </table>
               <div className="mb-6">
-                <h3 className="text-2xl font-bold mb-4">Description</h3>
-                <p className="text-lg">
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">Description</h3>
+                <p className="text-lg text-gray-800">
                   Mesin {machine.brand} {machine.type} berkualitas tinggi dari {machine.country}, tahun {machine.year}.
                   Siap digunakan dengan garansi dan dukungan penuh dari PT. Asai Metal.
                 </p>
@@ -167,11 +145,11 @@ export default async function MachineDetail({ params }: PageProps) {
               <div className="flex gap-4">
                 <a
                   href={`https://wa.me/628170968855?text=${generateWhatsAppMessage(machine)}`}
-                  className="bg-red-600 text-white px-6 py-3 rounded hover:bg-red-700 btn-modern transition-all duration-300 animate-pulse-glow"
+                  className="btn-modern text-lg font-bold uppercase shadow-lg animate-pulse-modern px-8 py-4 rounded-2xl"
                 >
                   Request Quote
                 </a>
-                <Link href="/custom" className="bg-gray-600 text-white px-6 py-3 rounded hover:bg-gray-700 btn-modern transition-all duration-300">
+                <Link href="/custom" className="btn-modern px-8 py-4 text-lg font-bold uppercase shadow-lg animate-pulse-modern rounded-2xl">
                   Custom Solution
                 </Link>
               </div>
@@ -180,18 +158,7 @@ export default async function MachineDetail({ params }: PageProps) {
         </div>
       </section>
 
-      <footer className="bg-gray-800 text-white py-10">
-        <div className="container mx-auto px-4 text-center">
-          <p className="mb-4">&copy; 2025 PT. Asai Metal. Semua hak dilindungi.</p>
-          <p className="mb-4">
-            Kontak: <a href="https://wa.me/628170968855" className="text-red-400 hover:underline" target="_blank" rel="noopener noreferrer">+628170968855</a> | <a href="https://wa.me/6287888411183" className="text-red-400 hover:underline" target="_blank" rel="noopener noreferrer">+6287888411183</a>
-          </p>
-          <p>
-            <span className="text-red-400 mr-4">Syarat & Ketentuan</span> |
-            <span className="text-red-400 ml-4">Kebijakan Privasi</span>
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

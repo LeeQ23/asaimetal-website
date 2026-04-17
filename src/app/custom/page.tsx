@@ -55,7 +55,7 @@ export default function Custom() {
           </nav>
           <a
             href="https://wa.me/628170968855?text=Saya%20tertarik%20dengan%20solusi%20kustom%20PT.%20Asai%20Metal"
-            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+            className="btn-modern inline-block text-center font-bold uppercase shadow-lg animate-pulse-modern px-8 py-4 text-lg rounded-2xl"
           >
             Hubungi Kami
           </a>
@@ -71,7 +71,7 @@ export default function Custom() {
 
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-2 gap-12">
             <div className="animate-fade-in-left">
               <h3 className="text-3xl font-bold mb-6 text-red-600">Kemampuan Kami</h3>
               <ul className="space-y-4 text-lg">
@@ -107,7 +107,7 @@ export default function Custom() {
             <div className="animate-fade-in-right">
               <h3 className="text-3xl font-bold mb-6 text-red-600">Request Custom Solution</h3>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4">
                   <input
                     type="text"
                     name="name"
@@ -126,7 +126,7 @@ export default function Custom() {
                     className="w-full p-3 border rounded form-input-modern"
                   />
                 </div>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4">
                   <input
                     type="email"
                     name="email"
@@ -167,7 +167,7 @@ export default function Custom() {
                   onChange={handleChange}
                   className="w-full p-3 border rounded form-input-modern"
                 />
-                <div className="grid md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                   <input
                     type="text"
                     name="capacity"
@@ -193,7 +193,7 @@ export default function Custom() {
                     className="w-full p-3 border rounded form-input-modern"
                   />
                 </div>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4">
                   <input
                     type="text"
                     name="timeline"
@@ -221,7 +221,7 @@ export default function Custom() {
                 ></textarea>
                 <button
                   type="submit"
-                  className="w-full bg-red-600 text-white py-3 rounded hover:bg-red-700 btn-modern transition-all duration-300 animate-pulse-glow"
+                  className="w-full btn-modern text-lg font-bold uppercase shadow-lg animate-pulse-modern py-4 rounded-2xl"
                 >
                   Kirim Request via WhatsApp
                 </button>

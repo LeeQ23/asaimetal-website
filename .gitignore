@@ -39,3 +39,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# large video files (exclude known large files for GitHub deployment)
+public/videos/ROBOT\ ARM\ TRANSFER.mp4
+public/videos/MESIN\ INJECTION\ PLASTIC\ UBE\ 2500T.mp4
+*.mov
+*.avi
+*.mkv
+*.zip
+*.rar
+*.7z
+*.tar.gz
+
+# Keep optimized video files under 100MB total
+!public/videos/Smart\ AMRs\ (*
+!public/videos/The\ ASAI\ METAL\ AMR\ Showroom\ *

@@ -1,103 +1,90 @@
 'use client';
-
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
   return (
-    <header className="bg-white shadow-md fixed w-full top-0 z-50">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+    <header className="bg-black/90 backdrop-blur-md shadow-md fixed w-full top-0 z-50 border-b border-red-600/20">
+      <div className="w-full px-6 lg:px-12 py-3 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="flex items-center" onClick={closeMobileMenu}>
-          <img
-            src="/logo-asai.jpg"
-            alt="PT. ASAI METAL Logo"
-            className="h-8 w-auto mr-2"
-          />
-          <span className="text-red-600 font-bold text-lg">PT. ASAI METAL</span>
+        <Link href="/" className="flex items-center space-x-3 sm:space-x-4 group overflow-visible shrink-0 uppercase">
+          <div className="relative flex items-center justify-center shrink-0 w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-md p-1 shadow-sm shadow-red-500/10 overflow-hidden">
+            <div className="relative w-full h-full">
+              <Image
+                src="/logo-asai.jpg"
+                alt="Logo"
+                fill
+                className="object-contain transition-transform duration-300 group-hover:scale-110"
+                sizes="(max-width: 640px) 48px, 64px"
+                priority
+              />
+            </div>
+          </div>
+          <span className="text-[16px] sm:text-xl font-bold text-white font-barlow tracking-wider whitespace-nowrap">PT. <span className="text-red-400">ASAI</span> METAL</span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex space-x-6">
-          <Link href="#hero" className="text-gray-700 hover:text-red-600 transition-colors">Home</Link>
-          <Link href="#proof" className="text-gray-700 hover:text-red-600 transition-colors">Klien Kami</Link>
-          <Link href="#benefits" className="text-gray-700 hover:text-red-600 transition-colors">Kenapa Kami</Link>
-          <Link href="#catalog" className="text-gray-700 hover:text-red-600 transition-colors">Solusi Otomasi</Link>
-          <Link href="/stock" className="text-gray-700 hover:text-red-600 transition-colors">Stok Mesin</Link>
-          <Link href="#authority" className="text-gray-700 hover:text-red-600 transition-colors">Proyek Kami</Link>
-          <Link href="#cta" className="text-gray-700 hover:text-red-600 transition-colors">Konsultasi Gratis</Link>
+        {/* Navigation */}
+        <nav className="header-nav hidden lg:flex space-x-4 xl:space-x-8">
+          <Link href="/#hero" className="text-gray-300 hover:text-red-400 transition-all duration-300 font-semibold relative group text-sm xl:text-base whitespace-nowrap">
+            Home
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-400 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link href="/#proof" className="text-gray-300 hover:text-red-400 transition-all duration-300 font-semibold relative group text-sm xl:text-base whitespace-nowrap">
+            Klien Kami
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-400 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link href="/#benefits" className="text-gray-300 hover:text-red-400 transition-all duration-300 font-semibold relative group text-sm xl:text-base whitespace-nowrap">
+            Kenapa Kami
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-400 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link href="/#catalog" className="text-gray-300 hover:text-red-400 transition-all duration-300 font-semibold relative group text-sm xl:text-base whitespace-nowrap">
+            Solusi Otomasi
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-400 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link href="/stock" className="text-gray-300 hover:text-red-400 transition-all duration-300 font-semibold relative group text-sm xl:text-base whitespace-nowrap">
+            Stok Mesin
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-400 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link href="/#authority" className="text-gray-300 hover:text-red-400 transition-all duration-300 font-semibold relative group text-sm xl:text-base whitespace-nowrap">
+            Proyek Kami
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-400 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link href="/#cta" className="text-gray-300 hover:text-red-400 transition-all duration-300 font-semibold relative group text-sm xl:text-base whitespace-nowrap">
+            Konsultasi Gratis
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-400 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
         </nav>
 
-        {/* Desktop Contact Button */}
-        <a
-          href="https://wa.me/628170968855?text=Saya%20tertarik%20dengan%20layanan%20PT.%20Asai%20Metal"
-          className="hidden lg:block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
-        >
-          Hubungi Kami
-        </a>
-
         {/* Mobile Menu Button */}
-        <button
-          onClick={toggleMobileMenu}
-          className="lg:hidden p-3 rounded-md hover:bg-gray-100 transition-colors"
-          aria-label="Toggle mobile menu"
+        <button 
+          className="header-mobile-menu lg:hidden text-white p-2 rounded-md hover:bg-red-500/20 transition-all duration-300"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <div className="w-6 h-6 flex flex-col justify-center items-center">
-            <span className={`block w-5 h-0.5 bg-gray-700 transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-1'}`}></span>
-            <span className={`block w-5 h-0.5 bg-gray-700 transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-            <span className={`block w-5 h-0.5 bg-gray-700 transition-transform duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-1'}`}></span>
-          </div>
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {isMobileMenuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
         </button>
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`mobile-menu-overlay ${isMobileMenuOpen ? 'active' : ''}`} onClick={closeMobileMenu}></div>
-
-      {/* Mobile Menu */}
-      <div className={`mobile-menu ${isMobileMenuOpen ? 'active' : ''}`}>
-        <div className="flex justify-between items-center mb-6">
-          <span className="text-white font-bold text-lg">Menu</span>
-          <button
-            onClick={closeMobileMenu}
-            className="text-white text-2xl hover:text-red-400 transition-colors"
-            aria-label="Close menu"
-          >
-            ×
-          </button>
+      {isMobileMenuOpen && (
+        <div className="lg:hidden bg-black/95 border-b border-red-600/20 absolute w-full left-0 top-full flex flex-col px-6 py-8 space-y-6 shadow-2xl z-[100] animate-fade-in-up">
+          <Link href="/#hero" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-red-400 font-semibold text-lg border-b border-red-900/30 pb-2">Home</Link>
+          <Link href="/#proof" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-red-400 font-semibold text-lg border-b border-red-900/30 pb-2">Klien Kami</Link>
+          <Link href="/#benefits" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-red-400 font-semibold text-lg border-b border-red-900/30 pb-2">Kenapa Kami</Link>
+          <Link href="/#catalog" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-red-400 font-semibold text-lg border-b border-red-900/30 pb-2">Solusi Otomasi</Link>
+          <Link href="/stock" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-red-400 font-semibold text-lg border-b border-red-900/30 pb-2">Stok Mesin</Link>
+          <Link href="/#authority" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-red-400 font-semibold text-lg border-b border-red-900/30 pb-2">Proyek Kami</Link>
+          <Link href="/#cta" onClick={() => setIsMobileMenuOpen(false)} className="text-red-400 font-bold text-lg mt-4">Konsultasi Gratis</Link>
         </div>
-
-        <nav>
-          <ul>
-            <li><Link href="#hero" className="block py-3 border-b border-gray-700 text-base hover:text-red-400 transition-colors" onClick={closeMobileMenu}>Home</Link></li>
-            <li><Link href="#proof" className="block py-3 border-b border-gray-700 text-base hover:text-red-400 transition-colors" onClick={closeMobileMenu}>Klien Kami</Link></li>
-            <li><Link href="#benefits" className="block py-3 border-b border-gray-700 text-base hover:text-red-400 transition-colors" onClick={closeMobileMenu}>Kenapa Kami</Link></li>
-            <li><Link href="#catalog" className="block py-3 border-b border-gray-700 text-base hover:text-red-400 transition-colors" onClick={closeMobileMenu}>Solusi Otomasi</Link></li>
-            <li><Link href="/stock" className="block py-3 border-b border-gray-700 text-base hover:text-red-400 transition-colors" onClick={closeMobileMenu}>Stok Mesin</Link></li>
-            <li><Link href="#authority" className="block py-3 border-b border-gray-700 text-base hover:text-red-400 transition-colors" onClick={closeMobileMenu}>Proyek Kami</Link></li>
-            <li><Link href="#cta" className="block py-3 border-b border-gray-700 text-base hover:text-red-400 transition-colors" onClick={closeMobileMenu}>Konsultasi Gratis</Link></li>
-          </ul>
-        </nav>
-
-        <div className="mt-6 pt-6 border-t border-gray-700">
-          <a
-            href="https://wa.me/628170968855?text=Saya%20tertarik%20dengan%20layanan%20PT.%20Asai%20Metal"
-            className="block w-full bg-red-600 text-white text-center py-3 rounded-lg hover:bg-red-700 transition-colors text-base font-semibold"
-            onClick={closeMobileMenu}
-          >
-            Hubungi Kami via WhatsApp
-          </a>
-        </div>
-      </div>
+      )}
     </header>
   );
 }

@@ -1,0 +1,218 @@
+$(document).ready(function() {
+	if($('.esaf-pro-dashboard-responsive-nav-toggle').length) {
+		$('.esaf-pro-dashboard-responsive-nav-toggle > span').html('Akses Menu');
+	}
+	
+	$("span.usernm").text(function(index, currentText) {
+	  var maxLength = 12;
+	  if(currentText.length >= maxLength) {
+		return currentText.substr(0, maxLength) + "...";
+	  } else {
+		return currentText
+	  } 
+	});
+	
+	if($('#toggleSubMenu').length) {
+		$('#toggleSubMenu').on('click', (function(e) {
+			e.preventDefault();
+
+			$('#subMenuNav').toggleClass('hidden');
+		}))
+	}
+
+	if($('#toggleSideMenu').length) {
+		$('#toggleSideMenu').on('click', (function(e) {
+			e.preventDefault();
+
+			$('#sidebarMenu').toggleClass('hidden');
+		}))
+	}
+
+	if($('#sidebarMenu').length) {
+		$(window).click(function() {
+			if($('#sidebarMenu').hasClass('hidden') === false) {
+				$('#sidebarMenu').addClass('hidden');	
+			}
+		});
+
+		$('#sidebarMenu').on('click', (function(e) {
+			e.stopPropagation();			
+		}))
+
+		$('#toggleSideMenu').on('click', (function(e) {
+			e.stopPropagation();			
+		}))
+	}
+
+	if($('.except-link').length) {
+		$('.except-link').on('click', (function(e) {
+			e.preventDefault();
+
+			var _url = $(this).attr('href');
+
+			document.location.href = _url;
+		}))
+	}
+
+	if($('.wpac-toggle-class').length) {
+		$('.wpac-toggle-class').on('click', (function(e) {
+			e.preventDefault();
+
+			var _target = $(this).data('target');
+
+			$(_target).toggleClass('hidden');
+			$(this).find('svg').toggleClass('rotate-down');
+		}))
+	}
+	
+	if($('.wpac-select2').length) {
+		$('.wpac-select2').select2();
+	}
+	
+	if($('#wpac-add-withdraw-commission').length) {
+		if(localStorage.getItem('wpac_lc_account_number')) {
+// 			$('#wpac-info-receiver').html(localStorage.getItem('wpac_lc_account_number') + ' (' + localStorage.getItem('wpac_lc_bank_type') + ') a.n ' + localStorage.getItem('wpac_lc_bank_owner'));
+			$('#wpac-info-receiver').html(localStorage.getItem('wpac_lc_account_number') + ' a.n ' + localStorage.getItem('wpac_lc_bank_owner'));
+		}
+
+		$('#wpac-add-withdraw-commission').on('submit', (function(e) {
+			e.preventDefault();
+			
+// 			var _current_text_btn = $('.esaf-pro-dashboard button').text();
+            var _button_submit = $(this).find('button[type="submit"]');
+			
+			if(!_button_submit.hasClass('wpac-disabled')) {
+				_button_submit.css({
+					'background': '#303030 !important;'
+				})
+				
+				_button_submit.html('Sedang Diproses..');
+			}
+
+			$.ajax({
+				method: 'POST',
+				url: ajxObj.ajax_url,
+				data: 'action=wpac_add_withdraw_commission&nonce=' + ajxObj.nonce + '&affiliate_id=' + ajxObj.affiliate_id,
+				dataType: 'json',
+				processData: false,
+				success: function(response) {
+					if(!_button_submit.hasClass('wpac-disabled')) {
+						setTimeout(function() {
+							_button_submit.css({
+								'background': '#BE48FB !important;'
+							})
+
+							_button_submit.html('Request Pencairan');
+						}, 1000)
+					}
+					
+					$('#wpac-form-message').html(response.message);
+				}
+			})
+		}))
+	}
+	
+	if($('#wpac-update-banking-information').length) {
+		if(localStorage.getItem('wpac_lc_bank_type')) {
+			$('select[name="wpac_bank_type"]').val(localStorage.getItem('wpac_lc_bank_type'));
+			$('select[name="wpac_bank_type"]').trigger('change');
+		}
+		
+		if(localStorage.getItem('wpac_lc_account_number')) {
+			$('input[name="wpac_account_number"]').val(localStorage.getItem('wpac_lc_account_number'));
+		}
+		
+		if(localStorage.getItem('wpac_lc_bank_owner')) {
+			$('input[name="wpac_bank_owner"]').val(localStorage.getItem('wpac_lc_bank_owner'));
+		}
+		
+		if(localStorage.getItem('wpac_lc_nik')) {
+			$('input[name="wpac_nik"]').val(localStorage.getItem('wpac_lc_nik'));
+		}
+		
+		if(localStorage.getItem('wpac_lc_phone_number')) {
+			$('input[name="mepr_phone_number"]').val(localStorage.getItem('wpac_lc_phone_number'));
+		}
+		
+		$('#wpac-update-banking-information').on('submit', (function(e) {
+			e.preventDefault();
+			
+// 			var _current_text_btn = $('.esaf-pro-dashboard button').text();
+            var _button_submit = $(this).find('button[type="submit"]');
+			
+			if(!_button_submit.hasClass('wpac-disabled')) {
+				_button_submit.css({
+					'background': '#303030 !important;'
+				})
+				
+				_button_submit.html('Sedang Diproses..');
+			}
+
+			var _redirect_url = $('input[name="wpac_redirect_url"]').val();
+			var _bank_type = $('select[name="wpac_bank_type"]').val();
+			var _account_number = $('input[name="wpac_account_number"]').val();
+			var _bank_owner = $('input[name="wpac_bank_owner"]').val();
+			var _phone_number = $('input[name="mepr_phone_number"]').val();
+			var _nik = $('input[name="wpac_nik"]').val();
+
+            console.log(_nik);
+            
+			$.ajax({
+				method: 'POST',
+				url: ajxObj.ajax_url,
+				data: 'action=wpac_update_banking_information&nonce=' + ajxObj.nonce + '&affiliate_id=' + ajxObj.affiliate_id + '&bank_type=' + _bank_type + '&account_number=' + _account_number + '&bank_owner=' + _bank_owner + '&nik=' + _nik + '&phone_number=' + _phone_number,
+				dataType: 'json',
+				processData: false,
+				success: function(response) {
+					if(response.success) {
+						localStorage.setItem('wpac_lc_bank_type', _bank_type);
+						localStorage.setItem('wpac_lc_account_number', _account_number);
+						localStorage.setItem('wpac_lc_bank_owner', _bank_owner);
+						localStorage.setItem('wpac_lc_nik', _nik);
+						localStorage.setItem('wpac_lc_phone_number', _phone_number);
+					}
+					
+					if(!_button_submit.hasClass('wpac-disabled')) {
+						setTimeout(function() {
+							_button_submit.css({
+								'background': '#BE48FB !important;'
+							})
+
+							_button_submit.html('Simpan Data');
+						}, 1000)
+					}
+					
+					$('#wpac-form-message2').html(response.message);
+
+					if(_redirect_url != '') {
+						document.location.href = _redirect_url;
+					}
+				}
+			})
+		}))
+	}
+	
+	if (localStorage.getItem("wpac_lc_account_number") === null) {
+        $(".esaf-pro-dashboard button").addClass('wpac-disabled');
+    }
+    
+    if($('.nav-tab').length) {
+        $('.nav-tab').on('click', (function(e) {
+            e.preventDefault();
+            
+            var _target = $(this).data('target');
+            
+            $('.esaf-withdraw-tabs .header .nav .link').removeClass('active');
+            $('.esaf-withdraw-tabs .header .nav .link[data-target="' + _target + '"]').addClass('active');
+            
+            $('.esaf-withdraw-tabs .content .item').removeClass('active');
+            $(_target).addClass('active');
+        }))
+    }
+    
+    if($('.esaf-pro-dashboard-menu .esaf-pro-dashboard-menu-inner').length) {
+        var _active = $('.esaf-pro-dashboard-menu .esaf-pro-dashboard-menu-inner a').index($('.esaf-pro-dashboard-menu .esaf-pro-dashboard-menu-inner .esaf-nav-active'));
+        
+        $('.esaf-pro-dashboard-menu .esaf-pro-dashboard-menu-inner').scrollLeft((_active)*100);
+    }
+})

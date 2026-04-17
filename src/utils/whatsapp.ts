@@ -8,8 +8,8 @@ export const getWhatsAppNumber = (): string => {
 };
 
 // Generate WhatsApp link with UTM tracking
-export const generateWhatsAppLink = (message: string, source: string): string => {
-  const number = getWhatsAppNumber();
+export const generateWhatsAppLink = (message: string, source: string, specificNumber?: string): string => {
+  const number = specificNumber || getWhatsAppNumber();
   return `https://wa.me/${number}?text=${message}&utm_source=website&utm_medium=${source}&utm_campaign=lead_generation`;
 };
 
@@ -101,7 +101,7 @@ export const generateWhatsAppMessage = (context: string, machine?: Machine): str
         if (machine.tableSize) message += `• Ukuran Meja: ${machine.tableSize}\n`;
         if (machine.qty && machine.unit) message += `• Quantity: ${machine.qty} ${machine.unit}\n`;
 
-        const specsEntries = Object.entries(machine.specs).filter(([key, value]) => value);
+        const specsEntries = Object.entries(machine.specs).filter(([_, value]) => value);
         if (specsEntries.length > 0) {
           message += `\n• Spesifikasi:\n`;
           specsEntries.forEach(([key, value]) => {
@@ -122,6 +122,13 @@ export const generateWhatsAppMessage = (context: string, machine?: Machine): str
     case 'cta_final':
       message += `Saya siap mulai automasi pabrik saya.\n\n`;
       message += `Bisa jadwalkan konsultasi gratis untuk diskusi solusi?\n\n`;
+      message += `Terima kasih`;
+      break;
+    
+    case 'stock_custom_request':
+      message += `Saya ingin mencari/request mesin, robot, atau spare part tertentu.\n\n`;
+      message += `Apakah PT. Asai Metal bisa bantu mencarikan barang berikut?\n`;
+      message += `[Sebutkan detail barang yang dicari di sini]\n\n`;
       message += `Terima kasih`;
       break;
 

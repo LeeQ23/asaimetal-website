@@ -1,0 +1,325 @@
+(function($) {
+  function isEmail(email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+  }
+	
+  $(document).ready(function() {
+	  $(document).find('#new-upgrade-btn').click(function() {
+		  try {
+				var product_id = $(this).data('id');
+				var email = "";
+				var coupon_code = $('#memberpay_oneclick_upgrade_coupon').val();
+
+				if(ajaxObj.is_logged_in) {
+					email = ajaxObj.current_user_email;
+				}
+
+				if(email === '') {
+					alert('Sorry, your email is still empty.');
+				} else {
+					if(isEmail(email)) {
+						$(this).html('Tunggu..');
+						$(this).attr('disabled', 'disabled');
+
+						$.ajax({
+							method: 'POST',
+							url: ajaxObj.ajax_url,
+							data: 'action=oneclick_checkout&product_id=' + product_id + '&email=' + email + '&coupon_code=' + coupon_code + '&nonce=' + ajaxObj.nonce,
+							dataType: 'json',
+							processData: false,
+							success: function(response) {
+								$(this).html('Join Now');
+								$(this).removeAttr('disabled');
+
+								if(response.success) {
+									$('header').append("<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'}); var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:''; j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl; f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TV9ZG3BT');</script>")
+
+									$('body').append('<div id="memberpay-popup-notification-payment" class="fixed w-full h-full left-0 top-0 bg-white/[1]" style="z-index: 99999999;">' +
+
+													 '<div class="grid place-content-center h-full">' +
+
+													 '<div class="text-center max-w-md">' + 
+
+													 '<h4 class="text-lg mb-2 font-semibold">This process is automatic. Your browser will be redirected to the Midtrans partner payment page.</h4>' + 
+
+													 '<p class="text-gray-900">Please wait a moment..<p>' + 
+
+													 '<p class="text-sm text-gray-900 font-semibold mt-4">' +
+
+													 'Paymen link: <a class="text-blue-600 hover:text-blue-900" href="' + response.payment_link + '" rel="noopener nofollow" target="_blank">' + response.payment_link + '</a>' +
+
+													 '</p>' +
+
+													 '<p class="text-gray-600 text-sm">Powered by Memberpay<p>' +
+
+													 '</div>' +
+
+													 '</div>' +
+
+													 '</div>' +
+													
+													  '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TV9ZG3BT" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>');
+
+									setTimeout(function() {
+										document.location.href = response.payment_link;
+
+										// 							var payment_page = window.open(response.payment_link, '_blank');
+
+										// 							if(payment_page) {
+										// 							  payment_page.focus();
+
+										// 							  $('#memberpay-popup-notification-payment').remove();
+
+										// 							  setTimeout(function() {
+										// 								  document.location.href = response.redirect_link;
+										// 							  }, 1000)
+										// 							} else {
+										// 							  document.location.href = response.payment_link;
+										// 							}
+									}, 1500)
+								} else {
+									alert(response.error);
+									
+// 									console.log(response, ajaxObj);
+
+									if(response.redirect_link != '') {
+										document.location.href = response.redirect_link;
+									} else {
+										alert(response.error);
+									}
+								}
+							}
+						})		
+					} else {
+						alert('Sorry, your email format is not valid.');	
+					}
+				}
+			} catch (err) {
+				console.log(err);
+			}
+	  })
+	  
+	  $(document).find('#new-upgrade-btn-2').click(function() {
+		  try {
+				var product_id = $(this).data('id');
+				var email = "";
+				var coupon_code = $('#memberpay_oneclick_upgrade_coupon').val();
+
+				if(ajaxObj.is_logged_in) {
+					email = ajaxObj.current_user_email;
+				}
+
+				if(email === '') {
+					alert('Sorry, your email is still empty.');
+				} else {
+					if(isEmail(email)) {
+						$(this).html('Tunggu..');
+						$(this).attr('disabled', 'disabled');
+
+						$.ajax({
+							method: 'POST',
+							url: ajaxObj.ajax_url,
+							data: 'action=oneclick_checkout&product_id=' + product_id + '&email=' + email + '&coupon_code=' + coupon_code + '&nonce=' + ajaxObj.nonce,
+							dataType: 'json',
+							processData: false,
+							success: function(response) {
+								$(this).html('Join Now');
+								$(this).removeAttr('disabled');
+
+								if(response.success) {
+									$('body').append('<div id="memberpay-popup-notification-payment" class="fixed w-full h-full left-0 top-0 bg-white/[1]" style="z-index: 99999999;">' +
+
+													 '<div class="grid place-content-center h-full">' +
+
+													 '<div class="text-center max-w-md">' + 
+
+													 '<h4 class="text-lg mb-2 font-semibold">This process is automatic. Your browser will be redirected to the Midtrans partner payment page.</h4>' + 
+
+													 '<p class="text-gray-900">Please wait a moment..<p>' + 
+
+													 '<p class="text-sm text-gray-900 font-semibold mt-4">' +
+
+													 'Paymen link: <a class="text-blue-600 hover:text-blue-900" href="' + response.payment_link + '" rel="noopener nofollow" target="_blank">' + response.payment_link + '</a>' +
+
+													 '</p>' +
+
+													 '<p class="text-gray-600 text-sm">Powered by Memberpay<p>' +
+
+													 '</div>' +
+
+													 '</div>' +
+
+													 '</div>');
+
+									setTimeout(function() {
+										document.location.href = response.payment_link;
+
+										// 							var payment_page = window.open(response.payment_link, '_blank');
+
+										// 							if(payment_page) {
+										// 							  payment_page.focus();
+
+										// 							  $('#memberpay-popup-notification-payment').remove();
+
+										// 							  setTimeout(function() {
+										// 								  document.location.href = response.redirect_link;
+										// 							  }, 1000)
+										// 							} else {
+										// 							  document.location.href = response.payment_link;
+										// 							}
+									}, 1500)
+								} else {
+									// alert(response.error);
+									
+// 									console.log(response.debug);
+
+									if(response.redirect_link != '') {
+										document.location.href = response.redirect_link;
+									} else {
+										alert(response.error);
+									}
+								}
+							}
+						})		
+					} else {
+						alert('Sorry, your email format is not valid.');	
+					}
+				}
+			} catch (err) {
+				console.log(err);
+			}
+	  })
+  })
+	
+  if($('.memberpay_oneclick_checkout_form').length) {
+// 	  if(ajaxObj.is_logged_in) { 14122022
+		$('.memberpay_oneclick_checkout_email').hide();
+		$('.memberpay_oneclick_checkout_button').css({
+			'position': 'relative',
+			'margin-top': '0px',
+			'margin-left': '0px'
+		})
+// 	  }
+	  
+    $('.memberpay_oneclick_checkout_form').on('submit', (function(e) {
+      e.preventDefault();
+
+      // alert('Maaf untuk saat ini website sedang under maintenance dan tidak bisa melakukan pembayaran, silahkan mencoba kembali nanti.');
+		
+// 	  if(ajaxObj.is_user_registered) {
+// 		  if(ajaxObj.has_payment == false) {
+// 			  document.location.href = ajaxObj.current_payment_link;
+// 		  } else {
+// 			  document.location.href = ajaxObj.coming_soon_url;
+// 		  } 
+// 	  } else {
+		if(ajaxObj.is_logged_in) {
+			try {
+				var product_id = $(this).find('.memberpay_oneclick_checkout_button').data('id');
+				var email = $(this).find('.memberpay_oneclick_checkout_email').val();
+				var coupon_code = $(this).find('#memberpay_oneclick_checkout_coupon').val();
+
+				if(ajaxObj.is_logged_in) {
+					email = ajaxObj.current_user_email;
+				}
+
+				if(email === '') {
+					alert('Sorry, your email is still empty.');
+				} else {
+					if(isEmail(email)) {
+						$('.memberpay_oneclick_checkout_button').html('Tunggu..');
+						$('.memberpay_oneclick_checkout_button').attr('disabled', 'disabled');
+
+						$.ajax({
+							method: 'POST',
+							url: ajaxObj.ajax_url,
+							data: 'action=oneclick_checkout&product_id=' + product_id + '&email=' + email + '&coupon_code=' + coupon_code + '&nonce=' + ajaxObj.nonce,
+							dataType: 'json',
+							processData: false,
+							success: function(response) {
+								console.log(response);
+								$('.memberpay_oneclick_checkout_button').html('Join Now');
+								$('.memberpay_oneclick_checkout_button').removeAttr('disabled');
+
+								if(response.success) {
+									$('header').append("<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'}); var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:''; j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl; f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TV9ZG3BT');</script>")
+
+									$('body').append('<div id="memberpay-popup-notification-payment" class="fixed w-full h-full left-0 top-0 bg-white/[1] z-10">' +
+
+													 '<div class="grid place-content-center h-full">' +
+
+													 '<div class="text-center max-w-md">' + 
+
+													 '<h4 class="text-lg mb-2 font-semibold">This process is automatic. Your browser will be redirected to the Midtrans partner payment page.</h4>' + 
+
+													 '<p class="text-gray-900">Please wait a moment..<p>' + 
+
+													 '<p class="text-sm text-gray-900 font-semibold mt-4">' +
+
+													 'Paymen link: <a class="text-blue-600 hover:text-blue-900" href="' + response.payment_link + '" rel="noopener nofollow" target="_blank">' + response.payment_link + '</a>' +
+
+													 '</p>' +
+
+													 '<p class="text-gray-600 text-sm">Powered by Memberpay<p>' +
+
+													 '</div>' +
+
+													 '</div>' +
+
+													 '</div>' +
+													 '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TV9ZG3BT" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>');
+
+									setTimeout(function() {
+										document.location.href = response.payment_link;
+
+										// 							var payment_page = window.open(response.payment_link, '_blank');
+
+										// 							if(payment_page) {
+										// 							  payment_page.focus();
+
+										// 							  $('#memberpay-popup-notification-payment').remove();
+
+										// 							  setTimeout(function() {
+										// 								  document.location.href = response.redirect_link;
+										// 							  }, 1000)
+										// 							} else {
+										// 							  document.location.href = response.payment_link;
+										// 							}
+									}, 1500)
+								} else {
+									// alert(response.error);
+									
+// 									console.log(response.debug);
+
+									if(response.redirect_link != '') {
+										document.location.href = response.redirect_link;
+									} else {
+										alert(response.error);
+									}
+								}
+							}
+						})		
+					} else {
+						alert('Sorry, your email format is not valid.');	
+					}
+				}
+			} catch (err) {
+				console.log(err);
+			}
+		} else {
+// 			var email = $(this).find('.memberpay_oneclick_checkout_email').val();
+			
+// 			if(email === '') {
+// 				alert('Sorry, your email is still empty.');
+// 			} else {
+// 				// 			Belum login
+// 				document.location.href = ajaxObj.register_free + '?email=' + email;
+// 			}
+			
+			document.location.href = ajaxObj.register_free;
+		}
+// 	  }
+    }))
+  }
+})(jQuery);
