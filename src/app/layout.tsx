@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "PT. Asai Metal - Industrial Automation & Machinery",
   description: "Solusi otomasi industri, mesin, dan robot terbaik untuk pabrik Anda.",
+  icons: {
+    icon: "/logo-asai.jpg",
+  },
 };
 
 export default function RootLayout({
