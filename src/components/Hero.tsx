@@ -15,12 +15,12 @@ export default function Hero() {
       {/* Main content */}
       <div className="container mx-auto px-6 text-center relative z-10">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 text-white font-barlow leading-tight animate-fade-in-up">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-8 text-white font-barlow leading-tight animate-fade-in-up">
             Transformasikan Pabrik Anda Dengan{' '}
             <span className="text-gradient">Otomasi Tanpa Batas</span>
           </h1>
 
-          <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-5xl mx-auto leading-relaxed animate-fade-in-up animate-delay-200">
+          <p className="text-base sm:text-lg md:text-2xl mb-8 text-gray-300 max-w-5xl mx-auto leading-relaxed animate-fade-in-up animate-delay-200">
             Mesin, robot, sistem — semua bisa kami buat & integrasikan, sesuai budget dan kebutuhan Anda.
           </p>
 
@@ -31,7 +31,7 @@ export default function Hero() {
           <div className="animate-fade-in-up animate-delay-500">
             <a
               href={generateWhatsAppLink(generateWhatsAppMessage('hero_consultation'), 'hero_cta')}
-              className="btn-modern inline-block text-center font-bold uppercase shadow-lg animate-pulse-modern px-12 py-6 text-xl rounded-2xl"
+              className="btn-modern inline-block text-center font-bold uppercase shadow-lg animate-pulse-modern px-6 py-4 sm:px-12 sm:py-6 text-sm sm:text-xl rounded-xl sm:rounded-2xl"
               target="_blank"
               rel="noopener noreferrer"
             >

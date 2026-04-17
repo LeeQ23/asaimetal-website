@@ -11,7 +11,7 @@ export default function Header() {
       <div className="w-full px-6 lg:px-12 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-3 sm:space-x-4 group overflow-visible shrink-0 uppercase">
-          <div className="relative flex items-center justify-center shrink-0 w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-md p-1 shadow-sm shadow-red-500/10 overflow-hidden">
+          <div className="relative flex items-center justify-center shrink-0 w-10 h-10 sm:w-12 md:w-16 bg-white rounded-md p-1 shadow-sm shadow-red-500/10 overflow-hidden">
             <div className="relative w-full h-full">
               <Image
                 src="/logo-asai.jpg"
@@ -23,7 +23,7 @@ export default function Header() {
               />
             </div>
           </div>
-          <span className="text-[16px] sm:text-xl font-bold text-white font-barlow tracking-wider whitespace-nowrap">PT. <span className="text-red-400">ASAI</span> METAL</span>
+          <span className="text-xs sm:text-sm md:text-xl font-bold text-white font-barlow tracking-wider whitespace-nowrap">PT. <span className="text-red-400">ASAI</span> METAL</span>
         </Link>
 
         {/* Navigation */}

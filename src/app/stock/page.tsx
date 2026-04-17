@@ -43,9 +43,9 @@ export default function Stock() {
     <>
       <Header />
 
-      <section className="pt-32 pb-8 bg-gradient-to-br from-red-600/10 via-white to-white text-gray-800 text-center animate-fade-in-up relative overflow-hidden border-b border-gray-100">
+      <section className="pt-24 sm:pt-32 pb-8 bg-gradient-to-br from-red-600/10 via-white to-white text-gray-800 text-center animate-fade-in-up relative overflow-hidden border-b border-gray-100">
         <div className="container mx-auto px-4 relative z-10 max-w-4xl">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4 animate-slide-in-scale tracking-tight">Stok Mesin & Robot Tersedia</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 animate-slide-in-scale tracking-tight">Stok Mesin & Robot Tersedia</h2>
           <p className="text-xl animate-fade-in-up animate-delay-200 mb-6 opacity-90 max-w-2xl mx-auto">
             Temukan mesin berkualitas tinggi untuk kebutuhan pabrik Anda. Semua stok siap dikirim dengan garansi.
           </p>
@@ -53,7 +53,7 @@ export default function Stock() {
             <p className="text-red-700 font-bold mb-3 uppercase tracking-widest text-sm bg-red-100/50 px-4 py-1 rounded-full">Belum menemukan yang dicari?</p>
             <a
               href={generateWhatsAppLink(generateWhatsAppMessage('stock_custom_request'), 'stock_hero_request', '6287888411183')}
-              className="btn-modern px-10 py-5 text-lg font-extrabold uppercase shadow-2xl animate-pulse-modern rounded-2xl flex items-center gap-3"
+              className="btn-modern px-6 py-4 sm:px-10 sm:py-5 text-sm sm:text-lg font-extrabold uppercase shadow-2xl animate-pulse-modern rounded-xl sm:rounded-2xl flex items-center justify-center gap-3"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -166,7 +166,7 @@ export default function Stock() {
                   )}
                 </div>
                 <div className="flex flex-col flex-1">
-                  <h3 className="text-xl font-bold text-red-600 mb-3 group-hover:text-red-700 transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold text-red-600 mb-3 group-hover:text-red-700 transition-colors">
                     {machine.brand || 'Unknown'} {machine.type} {machine.capacity ? `(${machine.capacity})` : ''}
                   </h3>
                   <div className="space-y-1 text-gray-900 text-sm">
@@ -177,10 +177,10 @@ export default function Stock() {
                     <p><strong>Qty:</strong> {machine.qty} {machine.unit}</p>
                   </div>
                 </div>
-                <div className="mt-auto pt-4 flex gap-2">
+                <div className="mt-auto pt-4 flex flex-col sm:flex-row gap-2">
                   <a
                     href={generateWhatsAppLink(generateWhatsAppMessage('stock_machine', machine), 'stock_request_quote')}
-                    className="btn-modern flex-1 text-center font-bold uppercase shadow-lg animate-pulse-modern px-6 py-3 text-sm rounded-2xl"
+                    className="btn-modern flex-1 text-center font-bold uppercase shadow-lg animate-pulse-modern px-4 py-3 sm:px-6 sm:py-3 text-xs sm:text-sm rounded-xl sm:rounded-2xl"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -188,7 +188,7 @@ export default function Stock() {
                   </a>
                   <button
                     onClick={() => router.push(`/stock/${machine.id}`)}
-                    className="btn-modern flex-1 text-center font-bold uppercase shadow-lg animate-pulse-modern px-6 py-3 text-sm rounded-2xl"
+                    className="btn-modern flex-1 text-center font-bold uppercase shadow-lg animate-pulse-modern px-4 py-3 sm:px-6 sm:py-3 text-xs sm:text-sm rounded-xl sm:rounded-2xl"
                   >
                     View Details
                   </button>
