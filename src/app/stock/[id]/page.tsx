@@ -16,7 +16,7 @@ const generateWhatsAppMessage = (machine: Machine) => {
   if (machine.country) details.push(`Made in: ${machine.country}`);
   if (machine.tableSize) details.push(`Ukuran Meja: ${machine.tableSize}`);
 
-  const specsEntries = Object.entries(machine.specs).filter(([_, value]) => value);
+  const specsEntries = Object.entries(machine.specs).filter(([, value]) => value);
   if (specsEntries.length > 0) {
     const specsText = specsEntries.map(([key, value]) => `${key}: ${value}`).join(', ');
     details.push(`Spesifikasi Lainnya: ${specsText}`);

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { machines, Machine } from '@/data/machines';
 import { generateWhatsAppLink, generateWhatsAppMessage } from '@/utils/whatsapp';

@@ -101,7 +101,7 @@ export const generateWhatsAppMessage = (context: string, machine?: Machine): str
         if (machine.tableSize) message += `• Ukuran Meja: ${machine.tableSize}\n`;
         if (machine.qty && machine.unit) message += `• Quantity: ${machine.qty} ${machine.unit}\n`;
 
-        const specsEntries = Object.entries(machine.specs).filter(([_, value]) => value);
+        const specsEntries = Object.entries(machine.specs).filter(([, value]) => value);
         if (specsEntries.length > 0) {
           message += `\n• Spesifikasi:\n`;
           specsEntries.forEach(([key, value]) => {
