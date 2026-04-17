@@ -1,14 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { machines, Machine } from '@/data/machines';
 import { generateWhatsAppLink, generateWhatsAppMessage } from '@/utils/whatsapp';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export default function Stock() {
-  const router = useRouter();
   const [filteredMachines, setFilteredMachines] = useState<Machine[]>(machines);
   const [search, setSearch] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
@@ -129,10 +128,14 @@ export default function Stock() {
             {filteredMachines.map((machine, index) => (
               <div
                 key={machine.id}
-                className={`bg-white p-6 rounded-lg shadow-md hover-lift cursor-pointer relative animate-fade-in-up flex flex-col h-full`}
+                className={`bg-white p-6 rounded-lg shadow-md hover-lift relative animate-fade-in-up flex flex-col h-full group`}
                 style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => router.push(`/stock/${machine.id}`)}
               >
+                <Link 
+                  href={`/stock/${machine.id}`}
+                  className="absolute inset-0 z-0"
+                  aria-label={`View details for ${machine.brand} ${machine.type}`}
+                />
                 <div className="relative w-full h-48 md:h-40 mb-6 group shrink-0 rounded-lg overflow-hidden border border-gray-100">
                   <img
                     src={machine.image || `https://via.placeholder.com/300x200?text=${machine.brand || 'Machine'}`}
@@ -180,18 +183,18 @@ export default function Stock() {
                 <div className="mt-auto pt-4 flex flex-col sm:flex-row gap-2">
                   <a
                     href={generateWhatsAppLink(generateWhatsAppMessage('stock_machine', machine), 'stock_request_quote')}
-                    className="btn-modern flex-1 text-center font-bold uppercase shadow-lg animate-pulse-modern px-4 py-3 sm:px-6 sm:py-3 text-xs sm:text-sm rounded-xl sm:rounded-2xl"
+                    className="btn-modern flex-1 text-center font-bold uppercase shadow-lg animate-pulse-modern px-4 py-3 sm:px-6 sm:py-3 text-xs sm:text-sm rounded-xl sm:rounded-2xl relative z-10"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     Request Quote
                   </a>
-                  <button
-                    onClick={() => router.push(`/stock/${machine.id}`)}
-                    className="btn-modern flex-1 text-center font-bold uppercase shadow-lg animate-pulse-modern px-4 py-3 sm:px-6 sm:py-3 text-xs sm:text-sm rounded-xl sm:rounded-2xl"
+                  <Link
+                    href={`/stock/${machine.id}`}
+                    className="btn-modern flex-1 text-center font-bold uppercase shadow-lg animate-pulse-modern px-4 py-3 sm:px-6 sm:py-3 text-xs sm:text-sm rounded-xl sm:rounded-2xl relative z-10 flex items-center justify-center"
                   >
                     View Details
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
