@@ -31,7 +31,7 @@ export default function Authority() {
               
               preload="metadata"
             >
-              <source src="/videos/FUKUI TANDEM LINE WA _ 087888411183 (FAJAR).mp4" type="video/mp4" />
+              <source src="/videos/fukui-tandem-line.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
 
@@ -78,7 +78,7 @@ export default function Authority() {
               
               preload="metadata"
             >
-              <source src="/videos/ROBOT ARM TRANSFER.mp4" type="video/mp4" />
+              <source src="/videos/robot-arm-transfer.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
 
@@ -125,7 +125,7 @@ export default function Authority() {
               
               preload="metadata"
             >
-              <source src="/videos/ROBOT HANDLING FOR DIE CASTING MACHINE.mp4" type="video/mp4" />
+              <source src="/videos/robot-handling-die-casting.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
 
@@ -172,7 +172,7 @@ export default function Authority() {
               playsInline
               preload="metadata"
             >
-              <source src="/videos/KOMATSU TANDEM LINE DENGAN ROBOT HANDLING YASKAWA WA _ 087888411183(FAJAR).mp4" type="video/mp4" />
+              <source src="/videos/komatsu-yaskawa-tandem.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
 
@@ -219,7 +219,7 @@ export default function Authority() {
               
               preload="metadata"
             >
-              <source src="/videos/Video for slideshow 1.mp4" type="video/mp4" />
+              <source src="/videos/press-line-integration.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
 
@@ -266,7 +266,7 @@ export default function Authority() {
               
               preload="metadata"
             >
-              <source src="/videos/MESIN INJECTION PLASTIC UBE 2500T.mp4" type="video/mp4" />
+              <source src="/videos/ube-2500t-injection.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
 

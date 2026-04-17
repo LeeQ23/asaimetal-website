@@ -40,9 +40,31 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# large video files (exclude known large files for GitHub deployment)
-public/videos/ROBOT\ ARM\ TRANSFER.mp4
-public/videos/MESIN\ INJECTION\ PLASTIC\ UBE\ 2500T.mp4
+# large video files (exclude all mp4 and only whitelist optimized ones under 100MB)
+public/videos/*.mp4
+!public/videos/fukui-tandem-line.mp4
+!public/videos/komatsu-yaskawa-tandem.mp4
+!public/videos/press-line-integration.mp4
+!public/videos/amr-showroom.mp4
+!public/videos/smart-amr-demo.mp4
+!public/videos/sbl-milling-video.mp4
+!public/videos/pyung-hwa-milling-video.mp4
+!public/videos/dahlih-milling-video.mp4
+!public/videos/okk-milling-video.mp4
+!public/videos/standar-milling-video.mp4
+!public/videos/hwacheon-lathe-video.mp4
+!public/videos/hankook-lathe-video.mp4
+!public/videos/yaskawa-robot-video.mp4
+!public/videos/komatsu-shearing-video.mp4
+!public/videos/ycm-cnc-lathe-video.mp4
+!public/videos/tech-milling-video.mp4
+!public/videos/aida-300t-video.mp4
+!public/videos/aida-500t-video.mp4
+!public/videos/seyi-35t-video.mp4
+!public/videos/seyi-25t-video1.mp4
+!public/videos/seyi-25t-video2.mp4
+
+# general large binaries
 *.mov
 *.avi
 *.mkv
@@ -50,7 +72,3 @@ public/videos/MESIN\ INJECTION\ PLASTIC\ UBE\ 2500T.mp4
 *.rar
 *.7z
 *.tar.gz
-
-# Keep optimized video files under 100MB total
-!public/videos/Smart\ AMRs\ (*
-!public/videos/The\ ASAI\ METAL\ AMR\ Showroom\ *

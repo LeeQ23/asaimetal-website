@@ -540,6 +540,7 @@ export const machines: Machine[] = [
       "Applications": "Material handling, Internal logistics, Manufacturing automation"
     },
     description: "Why Your Business Should Embrace AMRs with AI Technology. In today's fast-paced and competitive industrial landscape, Autonomous Mobile Robots (AMRs) powered by Artificial Intelligence offer a smart, scalable solution for automating material handling and internal logistics. Unlike traditional AGVs, AMRs use AI-driven navigation to move freely, detect obstacles in real time, and adapt to dynamic environments without fixed paths. By integrating AMRs into your operations, your business can reduce labor costs, minimize errors, improve workflow efficiency, and scale with demand. Whether in manufacturing, warehousing, or distribution, AMRs enable smarter automation that increases productivity and supports Industry 4.0 transformation. Now is the time to future-proof your operations with intelligent automation.",
+    videos: ["/videos/smart-amr-demo.mp4"],
     year: 2025,
     country: "INDONESIA",
     qty: 1,
