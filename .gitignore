@@ -72,3 +72,6 @@ public/videos/*.mp4
 *.rar
 *.7z
 *.tar.gz
+
+# open-next build artifacts
+/.open-next
