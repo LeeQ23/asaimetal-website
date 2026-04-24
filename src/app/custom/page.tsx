@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Head from 'next/head';
 import Link from 'next/link';
 
 export default function Custom() {
@@ -33,10 +32,6 @@ export default function Custom() {
 
   return (
     <>
-      <Head>
-        <title>Custom Solutions - PT. Asai Metal</title>
-        <meta name="description" content="Request custom automation solutions from PT. Asai Metal. Design, build, and integrate machines for your specific needs." />
-      </Head>
       <header className="bg-white shadow-md fixed w-full top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center">

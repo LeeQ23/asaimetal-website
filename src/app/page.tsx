@@ -5,13 +5,17 @@ import Proof from '@/components/Proof';
 import Benefits from '@/components/Benefits';
 import Catalog from '@/components/Catalog';
 import Authority from '@/components/Authority';
+import FAQ from '@/components/FAQ';
 import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
 
 
 export const metadata: Metadata = {
-  title: 'PT. Asai Metal - Otomasi Pabrik Terbaik',
-  description: 'Transformasikan pabrik Anda dengan mesin, robot & otomasi. Solusi otomasi lengkap dari PT. Asai Metal.',
+  title: 'Pusat Otomasi Industri & Integrasi Robot #1 Indonesia',
+  description: 'PT. Asai Metal menyediakan solusi otomasi pabrik lengkap: integrasi robot, konversi mesin manual ke otomatis, dan teknologi AMR. Konsultasi GRATIS sekarang!',
+  alternates: {
+    canonical: 'https://asaimetal.com',
+  },
 };
 
 export default function Home() {
@@ -25,6 +29,7 @@ export default function Home() {
         <Benefits />
         <Catalog />
         <Authority />
+        <FAQ />
         <CTA />
       </main>
       <Footer />
