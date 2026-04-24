@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: 'Pusat Otomasi Industri & Integrasi Robot #1 Indonesia',
   description: 'PT. Asai Metal menyediakan solusi otomasi pabrik lengkap: integrasi robot, konversi mesin manual ke otomatis, dan teknologi AMR. Konsultasi GRATIS sekarang!',
   alternates: {
-    canonical: 'https://asaimetal.com',
+    canonical: 'https://asaimetal-website.leekheemahendra.workers.dev',
   },
 };
 

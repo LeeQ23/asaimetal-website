@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://asaimetal.com/sitemap.xml',
+    sitemap: 'https://asaimetal-website.leekheemahendra.workers.dev/sitemap.xml',
   }
 }

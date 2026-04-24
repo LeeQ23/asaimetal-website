@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://asaimetal.com'),
+  metadataBase: new URL('https://asaimetal-website.leekheemahendra.workers.dev'),
   title: {
     default: "PT. Asai Metal - Industrial Automation & Machinery Indonesia",
     template: "%s | PT. Asai Metal"
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "PT. Asai Metal - Industrial Automation & Machinery",
     description: "Solusi otomasi industri, mesin, dan robot terbaik untuk pabrik Anda.",
-    url: "https://asaimetal.com",
+    url: "https://asaimetal-website.leekheemahendra.workers.dev",
     siteName: "PT. Asai Metal",
     locale: "id_ID",
     type: "website",
@@ -73,9 +73,9 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "PT. Asai Metal",
-    "image": "https://asaimetal.com/logo-asai.jpg",
-    "@id": "https://asaimetal.com",
-    "url": "https://asaimetal.com",
+    "image": "https://asaimetal-website.leekheemahendra.workers.dev/logo-asai.jpg",
+    "@id": "https://asaimetal-website.leekheemahendra.workers.dev",
+    "url": "https://asaimetal-website.leekheemahendra.workers.dev",
     "telephone": "+622159893652",
     "address": {
       "@type": "PostalAddress",
